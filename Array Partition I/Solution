@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int arrayPairSum(vector<int>& nums) {
+        int s = 0;
+        bool f = true;
+        sort(nums.begin(),nums.end());
+        for(auto i: nums) {
+            if (f == true) {
+                s = s + i;
+                f = false;
+            }
+            else f = true;
+        }
+        return s;
+    }
+};
