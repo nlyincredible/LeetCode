@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        int itv;
+        map<char, int> tmap;
+        int tmax = 0;
+        int cnt = 0;
+        int sz1 = tasks.size();
+        for (auto t: tasks) {
+            auto ret = tmap.insert({t,1});
+            if (!ret.second) ++ret.first->second;
+            if (ret.first->second > tmax) {
+                tmax = ret.first->second;
+                cnt = 1;
+            }
+            else if (ret.first->second == tmax) ++cnt;
+        }
+        int sz2 = tmap.size();
+        if (n >= sz2 - 1 || (sz2 -1)*n >= sz1 - tmax) {
+            itv = (tmax - 1)*(n + 1) + cnt;
+        }
+        else itv = sz1;
+        return itv;
+    }
+};
