@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int maxSub = INT_MIN;
+        int curr = 0;
+        for (auto n:nums) {
+			curr = max(0,curr);
+            curr += n;
+            maxSub = max(maxSub, curr);
+        }
+        return maxSub;
+    }
+};
