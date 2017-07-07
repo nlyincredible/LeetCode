@@ -1,0 +1,44 @@
+// Solution 1
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> ivec;
+        map<int,int> imap;
+        for (int n1:nums1)
+            ++imap[n1];
+        for (int n2:nums2) {
+            auto it = imap.find(n2);
+            if (it != imap.end() && (*it).second > 0) {
+                --(*it).second;
+                ivec.push_back(n2);
+            } 
+        }
+        return ivec;
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    vector<int> intersect(vector<int>& nums1, vector<int>& nums2) {
+        sort(nums1.begin(),nums1.end());
+        sort(nums2.begin(),nums2.end());
+        auto i1=nums1.begin(),i2=nums2.begin();
+        vector<int> rst;
+        while(i1!=nums1.end()&&i2!=nums2.end())
+        {
+            if(*i1==*i2)
+            {
+                rst.push_back(*i1);
+                i1++;
+                i2++;
+            }else if(*i1<*i2)
+            {
+                i1++;
+            }else{
+                i2++;
+            }
+        }
+        return rst;
+    }
+};
