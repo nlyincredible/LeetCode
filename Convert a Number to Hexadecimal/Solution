@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string toHex(int num) {
+        if (num == 0) return string("0");
+        string str;
+        string sc = "0123456789abcdef";
+        int cnt = 8;
+        while (num && cnt--)
+        {
+            str.push_back(sc[num & 15]);
+            num = num >> 4;
+        }
+        reverse(str.begin(), str.end());
+        return str;
+    }
+};
