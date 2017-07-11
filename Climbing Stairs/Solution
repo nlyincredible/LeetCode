@@ -1,0 +1,25 @@
+// Solution 1
+class Solution {
+public:
+    int climbStairs(int n) {
+        int curr = 1, next = 1;
+        while (n--) {
+            curr = (next += curr) - curr;
+        }
+        return curr;
+    }
+};
+
+// Solution 2
+class Solution {
+public:
+    int climbStairs(int n) {
+        vector<int>a(n,0);
+        for(int i=0;i<n;i++) {
+            if(i==0) a[i] = 1;
+            else if(i==1) a[i] = a[i-1] + 1;
+            else a[i] = a[i-1] + a[i-2];
+        }
+        return a[n-1];
+    }
+};
