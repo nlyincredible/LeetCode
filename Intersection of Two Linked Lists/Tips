@@ -1,0 +1,7 @@
+(1) List A + NULL + List B + NULL
+(2) List B + NULL + List A + NULL
+
+length of A = m
+length of B = n
+Total length = m + n
+complexity = O(m+n)
