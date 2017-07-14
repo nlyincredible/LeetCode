@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int sz = nums.size();
+        int pre = 0, preMax = 0, curr = 0;
+        for (int i = 0; i < sz; ++i) {
+            curr = preMax + nums[i];
+            preMax = max(preMax, pre);
+            pre = curr;
+        }
+        return max(preMax, curr);
+    }
+};
