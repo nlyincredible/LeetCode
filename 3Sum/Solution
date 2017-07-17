@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+        sort(nums.begin(), nums.end());
+        vector<vector<int>> ivv;
+        for (int i = 0; i < nums.size(); ++i) {
+            if (i > 0 && nums[i] == nums[i-1]) continue; 
+            int front = i + 1, back = nums.size() - 1;
+            int target = -nums[i];
+            while (front < back) {
+                if (nums[front] + nums[back] < target) ++front;
+                else if (nums[front] + nums[back] > target) --back;
+                else {
+                    vector<int> iv;
+                    iv.push_back(nums[i]);
+                    iv.push_back(nums[front]);
+                    iv.push_back(nums[back]);
+                    ivv.push_back(iv);
+                    while (front < back && nums[front] == iv[1]) ++front;
+                    while (front < back && nums[back] == iv[2]) --back;
+                }
+            }
+        }
+        return ivv;
+    }
+};
