@@ -1,0 +1,31 @@
+class Solution {
+public:
+    vector<vector<int>> fourSum(vector<int>& nums, int target) {
+        vector<vector<int>> ivv;
+        int sz = nums.size();
+        if (sz < 4) return ivv;
+        sort(nums.begin(), nums.end());
+        int p1, p2;
+        for (p1 = 0; p1 < sz-3; ++p1) {
+            if (nums[p1] + nums[sz-3] + nums[sz-2] + nums[sz-1] < target) continue;
+            for (p2 = p1+1; p2 < sz-2; ++p2) {
+                if (nums[p1] + nums[p2] + nums[sz-2] + nums[sz-1] < target) continue;
+                int p3 = p2 + 1, p4 = nums.size() - 1;
+                int tar = target - nums[p1] - nums[p2];
+                while (p3 < p4) {
+                    if (nums[p3] + nums[p4] > tar) --p4;
+                    else if (nums[p3] + nums[p4] < tar) ++p3;
+                    else {
+                        vector<int> iv = {nums[p1],nums[p2],nums[p3],nums[p4]};
+                        ivv.push_back(iv);
+                        while (p3 < p4 && nums[p3] == iv[2]) ++p3;
+                        while (p3 < p4 && nums[p4] == iv[3]) --p4;
+                    }
+                }
+                while (p2 < sz-2 && nums[p2] == nums[p2+1]) ++p2;
+            }
+            while (p1 < sz-3 && nums[p1] == nums[p1+1]) ++p1;
+        }
+        return ivv;
+    }
+};
