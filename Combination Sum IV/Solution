@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int combinationSum4(vector<int>& nums, int target) {
+        vector<int> comArray(target+1, 0);
+        comArray[0] = 1;
+        for (int tar = 1; tar <= target; ++tar) {
+            for (auto n:nums) {
+                if (tar >= n) {
+                    comArray[tar] += comArray[tar-n];
+                }
+            }
+        }
+        return comArray[target];
+    }    
+};
