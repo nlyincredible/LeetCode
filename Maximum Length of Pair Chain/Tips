@@ -1,0 +1,9 @@
+[x11,x12] [x21,x22] [x31,x32] [x41,x42]
+
+when [x41,x42] is to be inserted, there are two options:
+(1) [x11,x12] [x21,x22]
+(2) [x11,x12] [x31,x32]
+
+opposite case A:
+if x32 < x41 while x41 <= x22
+then we infer x32 < x22
