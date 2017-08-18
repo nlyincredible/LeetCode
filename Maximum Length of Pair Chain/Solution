@@ -1,0 +1,19 @@
+class Solution {
+public:
+    static bool isPrior(vector<int> &pair1, vector<int> &pair2) {
+        return (pair1[1] < pair2[1]) || (pair1[1] == pair2[1] && pair1[0] > pair2[0]);
+    }
+    
+    int findLongestChain(vector<vector<int>>& pairs) {
+        if (pairs.empty()) return 0;
+        sort(pairs.begin(), pairs.end(), isPrior);
+        int cnt = 1;
+        for (int i = 1, j = 0; i < pairs.size(); ++i) {
+            if (pairs[j][1] < pairs[i][0]) {
+                ++cnt;
+                j = i;
+            }
+        }
+        return cnt;
+    }
+};
